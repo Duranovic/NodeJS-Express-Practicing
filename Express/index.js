@@ -10,6 +10,7 @@ const courses = [
     {id: 3, name: "Course 3"}
 ]
 
+// GET
 app.get("/", (req, res)=>{
     res.send("WELCOME TO NODEJS EXPRESS PRACTICE");
 })
@@ -20,6 +21,7 @@ app.get("/api/courses/:id", (req, res)=>{
     const course = courses.find(x=>x.id==parseInt(req.params.id));
     if(!course){
         res.status(404).send("The Course with give ID was not found.");
+        return;
     }
     res.send(course);
 })
@@ -42,6 +44,28 @@ app.post("/api/courses", (req, res)=>{
     res.send(result);
 })
 
+// PUT
+app.put("/api/courses/:id", (req, res)=>{
+    let course = courses.find(x=>x.id == parseInt(req.params.id));
+    if(!course){
+        res.status(404).send("Course cannot be found");
+        return;
+    }
+    course.name = "UPDATED NAME";
+    res.send(course);
+})
+
+// DELETE
+app.delete("/api/courses/:id", (req, res)=>{
+    let course = courses.find(x=>x.id == parseInt(req.params.id));
+    if(!course){
+        res.status(404).send("Course cannot be found");
+        return;
+    }
+    let index = courses.indexOf(course);
+    courses.splice(index, 1);
+    res.send(course);    
+})
 
 
 
