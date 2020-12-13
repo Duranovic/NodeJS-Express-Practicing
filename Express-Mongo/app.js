@@ -16,8 +16,8 @@ app.get('/api', (req, res)=>{
 })
 
 // Conntect to DB 
-mongoose.connect("mongodb+srv://admin:admin@cluster0.nz6qh.mongodb.net/posts?retryWrites=true&w=majority", {useUnifiedTopology: true, useNewUrlParser:true}, ()=>{
-    console.log("CONNECTED TO DB");
+mongoose.connect(process.env.DB_CONNECTION, {useUnifiedTopology: true, useNewUrlParser:true}, ()=>{
+    console.log("Connected to DB");
 })
 
 
